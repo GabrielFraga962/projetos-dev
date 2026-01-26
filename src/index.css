@@ -101,17 +101,45 @@ body {
   #window-controls {
     @apply flex gap-2;
 
+    &:hover {
+      .close,
+      .minimize,
+      .maximize {
+        @apply opacity-100;
+
+        svg {
+          @apply opacity-100;
+        }
+      }
+    }
+
     .close {
-      @apply size-3.5 rounded-full bg-[#ff6157] cursor-pointer;
+      @apply size-3.5 rounded-full bg-[#ff6157] cursor-pointer flex items-center justify-center;
+
+      svg {
+        @apply opacity-0 transition-opacity duration-200;
+      }
     }
 
     .minimize {
-      @apply size-3.5 rounded-full bg-[#ffc030];
+      @apply size-3.5 rounded-full bg-[#ffc030] cursor-pointer flex items-center justify-center;
+
+      svg {
+        @apply opacity-0 transition-opacity duration-200;
+      }
     }
 
     .maximize {
-      @apply size-3.5 rounded-full bg-[#2acb42];
+      @apply size-3.5 rounded-full bg-[#2acb42] cursor-pointer flex items-center justify-center;
+
+      svg {
+        @apply opacity-0 transition-opacity duration-200;
+      }
     }
+  }
+
+  .maximized {
+    @apply top-0! left-0! w-screen! h-screen! rounded-none! transform-none!;
   }
 
   #window-header {
