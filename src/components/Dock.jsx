@@ -57,20 +57,21 @@ const Dock = () => {
     };
   }, []);
 
-  const toggleApp = (app) => {
-    if (!app.canOpen) return;
+  const toggleApp = (id) => {
+    const app = dockApps.find((app) => app.id === id);
+    if (app && !app.canOpen) return;
 
-    const window = windows[app.id];
+    const window = windows[id];
 
     if (!window) {
-      console.error(`Window ${app.id} not found`);
+      console.error(`Window ${id} not found`);
       return;
     }
 
     if (window.isOpen) {
-      closeWindow(app.id);
+      closeWindow(id);
     } else {
-      openWindow(app.id);
+      openWindow(id);
     }
   };
 
@@ -87,7 +88,7 @@ const Dock = () => {
               data-tooltip-content={name}
               data-tooltip-delay-show={150}
               disabled={!canOpen}
-              onClick={() => toggleApp(id, canOpen)}
+              onClick={() => toggleApp(id)}
             >
               <img
                 src={`/images/${icon}`}
